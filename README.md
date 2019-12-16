@@ -1,5 +1,3 @@
-"# liujunkang" 
-
  ## 目录
 * [背景介绍](#背景介绍)
 * [项目介绍](#项目介绍)
@@ -14,16 +12,16 @@
 <a name="项目介绍"></a>
 ## 项目介绍
  
-本项目采用C#开发，基于.netframework4.6.1。共包括66个方法，分别基于redis提供的常用命令实现，每个方法都经过严格测试，能够满足绝大多数访问redis的需求。核心类只有9个。
-ConnectionManager.cs，读取配置文件
-RedisClient.cs，门面，主要用来和客户交互
-RedisHash.cs，对应redis里面的哈希表
-RedisList.cs，对应redis里面的列表
-RedisPublishSubscribe.cs，对应redis里面的发布订阅
-RedisSet.cs，对应redis里面的集合
-RedisSortedSet.cs，对应redis里面的有序集合
-RedisString.cs，对应redis里面的字符串操作
-RedisHelper.cs，辅助类
+本项目采用C#开发，基于.netframework4.6.1。共包括66个方法，分别基于redis提供的常用命令实现，每个方法都经过严格测试，能够满足绝大多数访问redis的需求。核心类只有9个。  
+ConnectionManager.cs，读取配置文件  
+RedisClient.cs，门面，主要用来和客户交互  
+RedisHash.cs，对应redis里面的哈希表  
+RedisList.cs，对应redis里面的列表  
+RedisPublishSubscribe.cs，对应redis里面的发布订阅  
+RedisSet.cs，对应redis里面的集合  
+RedisSortedSet.cs，对应redis里面的有序集合  
+RedisString.cs，对应redis里面的字符串操作  
+RedisHelper.cs，辅助类  
  
 <a name="使用说明"></a>
 ## 使用说明
@@ -34,14 +32,14 @@ RedisHelper.cs，辅助类
     <add name="RedisExchangeHosts" connectionString="host=127.0.0.1;port=6379;password=123456" />
   </connectionStrings>
 </configuration>
-2、Console
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            using (RedisClient client = new RedisClient(15))
-            {
-                client.Open();
+2、Console  
+    class Program  
+    {  
+        static void Main(string[] args)  
+        {  
+            using (RedisClient client = new RedisClient(15))  
+            {  
+                client.Open();  
 
                 bool result = client.StringSet("A1", "From the roof you were able to see the full extent of the park");
                 Console.WriteLine("设置键值对：" + result);
@@ -92,8 +90,8 @@ RedisHelper.cs，辅助类
             }
         }
     }
-3、注意如果你使用的redis没有设置密码，那么则可以忽略掉
-<add name="RedisExchangeHosts" connectionString="host=127.0.0.1;port=6379;" />
+3、注意如果你使用的redis没有设置密码，那么则可以忽略掉  
+<add name="RedisExchangeHosts" connectionString="host=127.0.0.1;port=6379;" />  
  
 
 
