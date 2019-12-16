@@ -25,7 +25,7 @@ RedisHelper.cs，辅助类
  
 <a name="使用说明"></a>
 ## 使用说明
-1、App.config
+* 1、App.config
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
@@ -34,7 +34,7 @@ RedisHelper.cs，辅助类
   </connectionStrings>
 </configuration>
 ```
-2、Console  
+* 2、Console  
 ```
     class Program  
     {  
@@ -93,8 +93,8 @@ RedisHelper.cs，辅助类
             }
         }
     }
-    ```
-3、注意如果你使用的redis没有设置密码，那么则可以忽略掉  
+ ```   
+* 3、注意如果你使用的redis没有设置密码，那么则可以忽略掉  
 ```
 <add name="RedisExchangeHosts" connectionString="host=127.0.0.1;port=6379;" />  
 ```
