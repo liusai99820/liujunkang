@@ -1,4 +1,6 @@
-﻿## 目录
+"# liujunkang" 
+
+ ## 目录
 * [背景介绍](#背景介绍)
 * [项目介绍](#项目介绍)
 * [使用说明](#使用说明)
@@ -104,4 +106,3 @@ RedisHelper.cs，辅助类
 * Email：liusai99820@qq.com
 * QQ：598241877
 * Wechat：liusai99820
-"# liujunkang" 
