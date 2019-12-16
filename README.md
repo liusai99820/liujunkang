@@ -101,7 +101,8 @@ RedisHelper.cs，辅助类
 ```
  
 ## 联系方式
-Please feel free to contact me at any time. The contact information is as follows：
+欢迎随时与我沟通：  
+Please feel free to contact me at any time. The contact information is as follows：  
  
 
 * Email：liusai99820@qq.com
