@@ -2,6 +2,7 @@
 * [背景介绍](#背景介绍)
 * [项目介绍](#项目介绍)
 * [使用说明](#使用说明)
+* [联系方式](#联系方式)
 
  
 <a name="背景介绍"></a>
@@ -99,11 +100,7 @@ RedisHelper.cs，辅助类
 <add name="RedisExchangeHosts" connectionString="host=127.0.0.1;port=6379;" />  
 ```
  
-
-
-
-
- 
+## 联系方式
 Please feel free to contact me at any time. The contact information is as follows：
  
 
