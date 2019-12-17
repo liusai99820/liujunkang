@@ -35,6 +35,10 @@ namespace Utility.Redis
                 }
                 socket.Send(Encoding.UTF8.GetBytes(string.Format("*2\r\n$6\r\nselect\r\n${0}\r\n{1}\r\n", database.ToString().Length, database)));
                 string returnValue = RedisHelper.Receive(socket);
+                if (returnValue.StartsWith("-NOAUTH Authentication required"))
+                {
+                    throw new RedisException("访问redis需要密码，请在配置文件中设置密码信息");
+                }
                 if (!returnValue.StartsWith("+OK"))
                 {
                     throw new RedisException("数据库索引超出范围");
