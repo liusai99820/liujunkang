@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Utility.Redis
 {
-    public partial class  RedisClient
+    public partial class RedisClient
     {
         /// <summary>
         /// 获取Key对应的Value
@@ -214,11 +214,62 @@ namespace Utility.Redis
         /// <param name="key">关键字</param>
         /// <param name="seconds">过期时间</param>
         /// <returns></returns>
-        public bool StringExpire(string key,int seconds)
+        public bool StringExpire(string key, int seconds)
         {
             socket.Send(Encoding.UTF8.GetBytes(string.Format("*3\r\n$6\r\nexpire\r\n${0}\r\n{1}\r\n${2}\r\n{3}\r\n", RedisHelper.GetLength(key), key, seconds.ToString().Length, seconds)));
             string result = RedisHelper.Receive(socket);
             return result.StartsWith(":1");
+        }
+
+        /// <summary>
+        /// 执行Lua脚本，注意该方法的返回值是没有经过过滤的，是从redis返回的原始值
+        /// </summary>
+        /// <param name="script">Lua脚本 For example:"if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end"</param>
+        /// <param name="keys">KEYS数组</param>
+        /// <param name="argv">参数数组</param>
+        /// <returns></returns>
+        public string StringEvalLuaScript(string script, string[] keys, string[] argv)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("*{0}\r\n$4\r\neval\r\n${1}\r\n{2}\r\n${3}\r\n{4}\r\n", 3 + keys.Length + argv.Length, script.Length, script, keys.Length.ToString().Length, keys.Length);
+            foreach (var item in keys)
+            {
+                sb.AppendFormat("${0}\r\n{1}\r\n", RedisHelper.GetLength(item), item);
+            }
+            foreach (var item in argv)
+            {
+                sb.AppendFormat("${0}\r\n{1}\r\n", RedisHelper.GetLength(item), item);
+            }
+            socket.Send(Encoding.UTF8.GetBytes(sb.ToString()));
+            string result = RedisHelper.Receive(socket);
+            return result;
+        }
+
+        /// <summary>
+        /// 利用redis来实现一个分布式加锁的功能
+        /// </summary>
+        /// <param name="key">键</param>
+        /// <param name="requestId">请求标识</param>
+        /// <param name="expire">锁的过期时间，单位为秒</param>
+        /// <returns></returns>
+        public bool StringLock(string key, string requestId, int expire)
+        {
+            string script = "if redis.call('setnx', KEYS[1],ARGV[1]) == 1 then return redis.call('expire', KEYS[1],ARGV[2]) else return 0 end";
+            string result = StringEvalLuaScript(script, new string[] { key }, new string[] { requestId, expire.ToString() });
+            return RedisHelper.ClearString5(result) > 0;
+        }
+
+        /// <summary>
+        /// 利用redis来实现一个分布式解锁的功能
+        /// </summary>
+        /// <param name="key">键</param>
+        /// <param name="requestId">请求标识</param>
+        /// <returns></returns>
+        public bool StringUnLock(string key, string requestId)
+        {
+            string script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+            string result = StringEvalLuaScript(script, new string[] { key }, new string[] { requestId });
+            return RedisHelper.ClearString5(result) > 0;
         }
     }
 }
