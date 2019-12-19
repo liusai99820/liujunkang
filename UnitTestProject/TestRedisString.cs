@@ -306,5 +306,56 @@ namespace UnitTestProject
             isOK = client.StringDel("A_46");
             Assert.AreEqual(false, isOK);
         }
+        /// <summary>
+        /// 利用redis来实现一个分布式加锁的功能
+        /// </summary>
+        [TestMethod]
+        public void TestStringLock()
+        {
+            bool isok = client.StringSet("k1", "liusai");
+            Assert.AreEqual(true, isok);
+            isok = client.StringLock("k1", "liusai", 3);
+            Assert.AreEqual(false, isok, "因为键已存在，所以加锁失败");
+            isok = client.StringDel("k1");
+            Assert.AreEqual(true, isok);
+            isok = client.StringLock("k1", "liusai", 3);
+            Assert.AreEqual(true, isok, "因为键不存在，所以加锁成功");
+            System.Threading.Thread.Sleep(4000);
+            string msg = client.StringGet("k1");
+            Assert.AreEqual(string.Empty, msg);
+        }
+        /// <summary>
+        /// 利用redis来实现一个分布式解锁的功能
+        /// </summary>
+        [TestMethod]
+        public void TestStringUnLock()
+        {
+            bool isok = client.StringSetNotExist("k1_unlock", "yy");
+            Assert.AreEqual(true, isok);
+            isok = client.StringUnLock("k1_unlock", "yy");
+            Assert.AreEqual(true, isok, "key值存在同时请求标识等于yy，所以可以解锁");
+
+            isok = client.StringSetNotExist("k1_unlock", "yy2");
+            Assert.AreEqual(true, isok);
+            isok = client.StringUnLock("k1_unlock", "yy");
+            Assert.AreEqual(false, isok, "key值存在同时请求标识不等于yy，所以解锁失败");
+
+            isok = client.StringDel("k1_unlock");
+            Assert.AreEqual(true, isok);
+        }
+        /// <summary>
+        /// 执行Lua脚本，注意该方法的返回值是没有经过过滤的，是从redis返回的原始值
+        /// </summary>
+        [TestMethod]
+        public void StringEvalLuaScript()
+        {
+            string script = "if redis.call('setnx', KEYS[1],ARGV[1]) == 1 then return redis.call('expire', KEYS[1],ARGV[2]) else return 0 end";
+            string result = client.StringEvalLuaScript(script, new String[] { "key_99765" }, new String[] { "testv", "10" });
+            Assert.AreEqual(":1\r\n", result);
+
+            script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+            result = client.StringEvalLuaScript(script, new String[] { "key_99765" }, new String[] { "testv" });
+            Assert.AreEqual(":1\r\n", result);
+        }
     }
 }
