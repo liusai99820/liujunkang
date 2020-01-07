@@ -42,6 +42,13 @@ RedisHelper.cs，辅助类
 ```
 * 2、Console  
 ```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Utility.Redis;
+
+namespace ConsoleApp1
+{
     class Program  
     {  
         static void Main(string[] args)  
@@ -131,6 +138,7 @@ RedisHelper.cs，辅助类
             #endregion 集群模式(Cluster)
         }
     }
+}
  ```   
 * 3、注意如果你使用的redis没有设置密码，那么则可以忽略掉  
 ```
