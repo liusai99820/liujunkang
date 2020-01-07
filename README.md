@@ -51,7 +51,6 @@ RedisHelper.cs，辅助类
             using (RedisClient client = new RedisClient(15))
             {
                 client.Open();
-
                 bool result = client.StringSet("A1", "From the roof you were able to see the full extent of the park");
                 Console.WriteLine("设置键值对：" + result);
                 string msg = client.StringGet("A1");
@@ -100,8 +99,10 @@ RedisHelper.cs，辅助类
                 Console.WriteLine("批量删除元素：" + result);
             }
             Console.WriteLine("******************** Common End ******************");
-            #endregion 单机模式(Common)
             Console.WriteLine();
+            #endregion 单机模式(Common)
+            
+            
             #region 哨兵模式(Sentinel)
             Console.WriteLine("******************** Sentinel Start ******************");
             SentinelClient sentinel = new SentinelClient(1);
@@ -113,8 +114,10 @@ RedisHelper.cs，辅助类
                 Console.WriteLine(client.StringGet("name"));
             }
             Console.WriteLine("******************** Sentinel End ******************");
-            #endregion 哨兵模式(Sentinel)
             Console.WriteLine();
+            #endregion 哨兵模式(Sentinel)
+            
+            
             #region 集群模式(Cluster)
             Console.WriteLine("******************** Cluster Start ******************");
             ClusterClient cluster = new ClusterClient();
