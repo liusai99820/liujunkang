@@ -31,11 +31,11 @@ RedisHelper.cs，辅助类
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <connectionStrings>
-    <!-- 单机模式 -->
+    <!-- 单机模式(Common) -->
     <add name="RedisExchangeHosts" connectionString="host=127.0.0.1;port=8900;password=123456" />
-    <!-- 哨兵模式 -->
+    <!-- 哨兵模式(Sentinel) -->
     <add name="RedisSentinel" connectionString="sentinel=127.0.0.1:8905,127.0.0.1:8906,127.0.0.1:8907;mastername=mymaster;password=123456"/>
-    <!-- 集群模式 -->
+    <!-- 集群模式(Cluster) -->
     <add name="RedisCluster" connectionString="cluster=127.0.0.1:8908,127.0.0.1:8909,127.0.0.1:8910,127.0.0.1:8911,127.0.0.1:8912,127.0.0.1:8913;password=123456"/>
   </connectionStrings>
 </configuration>
@@ -46,7 +46,7 @@ RedisHelper.cs，辅助类
     {  
         static void Main(string[] args)  
         {  
-           #region 单机模式
+           #region 单机模式(Common)
             Console.WriteLine("******************** Common Start ******************");
             using (RedisClient client = new RedisClient(15))
             {
@@ -100,9 +100,9 @@ RedisHelper.cs，辅助类
                 Console.WriteLine("批量删除元素：" + result);
             }
             Console.WriteLine("******************** Common End ******************");
-            #endregion 单机模式
+            #endregion 单机模式(Common)
             Console.WriteLine();
-            #region 哨兵模式
+            #region 哨兵模式(Sentinel)
             Console.WriteLine("******************** Sentinel Start ******************");
             SentinelClient sentinel = new SentinelClient(1);
             using (RedisClient client = sentinel.GetInstance())
@@ -113,9 +113,9 @@ RedisHelper.cs，辅助类
                 Console.WriteLine(client.StringGet("name"));
             }
             Console.WriteLine("******************** Sentinel End ******************");
-            #endregion 哨兵模式
+            #endregion 哨兵模式(Sentinel)
             Console.WriteLine();
-            #region 集群模式
+            #region 集群模式(Cluster)
             Console.WriteLine("******************** Cluster Start ******************");
             ClusterClient cluster = new ClusterClient();
             string test1 = cluster.StringGet("name");
@@ -125,7 +125,7 @@ RedisHelper.cs，辅助类
             test1 = cluster.StringGet("test1");
             Console.WriteLine("test1=" + test1);
             Console.WriteLine("******************** Cluster End ******************");
-            #endregion 集群模式
+            #endregion 集群模式(Cluster)
         }
     }
  ```   
