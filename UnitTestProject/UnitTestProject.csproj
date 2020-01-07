@@ -56,6 +56,11 @@
     <Compile Include="TestRedisSet.cs" />
     <Compile Include="TestRedisSortedSet.cs" />
     <Compile Include="TestRedisPublishSubscribe.cs" />
+    <Compile Include="TestClusterString.cs" />
+    <Compile Include="TestClusterHash.cs" />
+    <Compile Include="TestClusterList.cs" />
+    <Compile Include="TestClusterSet.cs" />
+    <Compile Include="TestClusterSortedSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

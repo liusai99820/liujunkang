@@ -52,6 +52,8 @@ namespace Utility.Redis
         {
             int startIndex = originValue.IndexOf("\r\n");
             int endIndex = originValue.LastIndexOf("\r\n");
+            if (startIndex == endIndex)
+                return originValue;
             return originValue.Substring(startIndex + 2, endIndex - startIndex - 2);
         }
         public static List<string> ClearString2(string originValue)
@@ -139,6 +141,22 @@ namespace Utility.Redis
                 }
             }
             return sign;
+        }
+        /// <summary>
+        /// 判断服务器是否可以正常连接
+        /// </summary>
+        /// <param name="host">主机地址</param>
+        /// <param name="port">端口号</param>
+        /// <param name="millisecondTimeout">超时时间（单位毫秒）</param>
+        /// <returns></returns>
+        public static bool IsConnected(string host, int port, int millisecondTimeout)
+        {
+            using (TcpClient client = new TcpClient())
+            {
+                var ar = client.BeginConnect(host, port, null, null);
+                ar.AsyncWaitHandle.WaitOne(millisecondTimeout);
+                return client.Connected;
+            }
         }
     }
 }

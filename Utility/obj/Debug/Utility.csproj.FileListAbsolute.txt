@@ -3,3 +3,9 @@ C:\Users\CF-008\source\repos\ConsoleApp1\Utility\bin\Debug\Utility.pdb
 C:\Users\CF-008\source\repos\ConsoleApp1\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
 C:\Users\CF-008\source\repos\ConsoleApp1\Utility\obj\Debug\Utility.dll
 C:\Users\CF-008\source\repos\ConsoleApp1\Utility\obj\Debug\Utility.pdb
+E:\开源\redis\Utility\bin\Debug\Utility.dll
+E:\开源\redis\Utility\bin\Debug\Utility.pdb
+E:\开源\redis\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+E:\开源\redis\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+E:\开源\redis\Utility\obj\Debug\Utility.dll
+E:\开源\redis\Utility\obj\Debug\Utility.pdb

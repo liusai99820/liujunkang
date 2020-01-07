@@ -242,7 +242,7 @@ namespace Utility.Redis
             }
             socket.Send(Encoding.UTF8.GetBytes(sb.ToString()));
             string result = RedisHelper.Receive(socket);
-            return result;
+            return RedisHelper.ClearString(result);
         }
 
         /// <summary>

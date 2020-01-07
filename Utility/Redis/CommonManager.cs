@@ -10,12 +10,12 @@ namespace Utility.Redis
     /// <summary>
     /// 解析Redis数据库连接串
     /// </summary>
-    public static class ConnectionManager
+    public static class CommonManager
     {
         private static readonly string host;
         private static readonly int port;
         private static readonly string password;
-        static ConnectionManager()
+        static CommonManager()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["RedisExchangeHosts"].ToString();
             string[] arr = connectionString.Split(';');

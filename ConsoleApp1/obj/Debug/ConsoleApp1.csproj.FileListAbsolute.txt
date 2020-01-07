@@ -11,3 +11,16 @@ C:\Users\CF-008\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\FM.IceLink.WebRTC
 C:\Users\CF-008\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
 C:\Users\CF-008\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Utility.dll
 C:\Users\CF-008\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\Utility.pdb
+E:\开源\redis\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+E:\开源\redis\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+E:\开源\redis\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+E:\开源\redis\ConsoleApp1\bin\Debug\FM.dll
+E:\开源\redis\ConsoleApp1\bin\Debug\FM.IceLink.dll
+E:\开源\redis\ConsoleApp1\bin\Debug\FM.IceLink.WebRTC.dll
+E:\开源\redis\ConsoleApp1\bin\Debug\Utility.dll
+E:\开源\redis\ConsoleApp1\bin\Debug\Utility.pdb
+E:\开源\redis\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
+E:\开源\redis\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+E:\开源\redis\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
+E:\开源\redis\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+E:\开源\redis\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
